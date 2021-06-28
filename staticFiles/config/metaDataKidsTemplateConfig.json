@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta
+            charset="utf-8"
+            name="viewport"
+            content="initial-scale=1.0, user-scalable=no, maximum-scale=1.0, min-width=320"
+        />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="-1" />
+        <base href="/" />
+        <link rel="manifest" href="/manifest.json?v=1622724841011" />
+
+        <!-- Apple Stand-alone mode stuff... -->
+        <meta name="apple-mobile-web-app-title" content="GigaWeb" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <!-- //TODO : Add this dynamically
+    <link rel="apple-touch-startup-image" href="./staticFiles/images/logo_screen_transparentBG-VF.png">
+-->
+        <link href="./staticFiles/images/icons/fav-icon.png" rel="icon" sizes="16x16" />
+        <!-- Android stand-alone-->
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-title" content="GigaWeb" />
+        <title></title>
+
+        <script language="javascript" type="text/javascript" src="./staticFiles/config/projectConfig.js?v=1622724841011"></script>
+        <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+        <script language="javascript" type="text/javascript" src="preFlight.js?v=1622724841011"></script>
+        <script src="clappr-0.3.7.min.js?v=1622724841011"></script>
+        <script src="dash-shaka-playback-2.3.1.js?v=1622724841011"></script>
+        <script src="conviva-core-sdk.min.js?v=1622724841011"></script>
+        <script src="conviva-html5native-impl.js?v=1622724841011"></script>
+        <script src="empclient.min.js?v=1622724841011"></script>
+        <link rel="canonical" href="" />
+        <!-- <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "url": "https://astrogo.astro.com.my,
+        "logo": "https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png"
+      }
+    </script> -->
+    </head>
+    <body onload="addProjectBundle()">
+        <section id="Root_container"></section>
+    </body>
+</html>
