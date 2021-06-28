@@ -1,0 +1,26 @@
+{
+  "ENDPOINTS": [
+      {
+          "PROTOCOL": "https",
+          "IP": "sg-sg-sg.astro.com.my:9443",
+          "PORT": null,
+          "IP_CTAP": null,
+          "PORT_CTAP": null,
+          "NAME": "ctap-il",
+          "CONFIGURATION": "CTAP",
+          "PLAYBACK_TIMEOUT": 30,
+          "DEFAULT_PARENTAL_RATING_THRESHOLD": 16
+      }
+  ],
+  "DRM_SERVER_CONFIG": {
+      "appRefID": "vpc-08b38d50389bdc506",
+      "brand": "ZTV",
+      "version": "9.0",
+      "config": {
+          "sa.vgdrm.host": "drm-sgw-sgw.astro.com.my",
+          "sa.vgdrm.port": "33222",
+          "sa.vgdrm.path": "DRMS"
+      }
+  },
+  "CSDS_URL": "csds-astro.astro.com.my"
+}
