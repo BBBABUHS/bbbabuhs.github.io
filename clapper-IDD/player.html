@@ -65,7 +65,7 @@ function getQueryParam(param) {
 var result =  window.location.search.match(new RegExp("(\\?|&)" + param + "(\\[\\])?=([^&]*)")); return result ? result[3] : false;}
 var topVideo = getQueryParam("s");
 var playerElement = document.getElementById("player");
-var player = new Clappr.Player({height: "400", width: "100%", autoPlay: true, plugins: {'core': [LevelSelector]},mediacontrol: {seekbar: "#000", buttons: "#2483d5"},
+var player = new Clappr.Player({height: "100%", width: "100%", autoPlay: true, plugins: {'core': [LevelSelector]},mediacontrol: {seekbar: "#000", buttons: "#2483d5"},
 hlsjsConfig: {xhrSetup: function(xhr, url) {xhr.withCredentials = false;}}, playbackConfig: {crossorigin: 'use-credentials'}}); player.attachTo(playerElement);
 player.load({source: topVideo, mimeType: 'application/x-mpegURL'});
 player.play();
