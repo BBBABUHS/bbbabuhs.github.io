@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="37px" viewBox="0 0 20 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>pov_left_arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Guideline" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="pov_left_arrow" transform="translate(10.000000, 18.500000) scale(-1, 1) translate(-10.000000, -18.500000) translate(1.000000, 0.000000)">
+            <polyline id="Stroke-3" stroke="#EEEEEE" points="0.4148 0.9701 16.5288 18.2841 0.3658 35.6121"></polyline>
+            <polyline id="Stroke-1" stroke="#041C2C" points="1.0811 0.3406 17.7681 18.2776 1.0811 36.2786"></polyline>
+        </g>
+    </g>
+</svg>
