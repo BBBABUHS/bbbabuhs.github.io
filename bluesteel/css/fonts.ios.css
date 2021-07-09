@@ -1,0 +1,41 @@
+@font-face {
+    font-family: SystemFont;
+    src: url("/content/css/fonts/proxima-nova/proxima_nova_reg.otf") format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: SystemFont;
+    src: url("/content/css/fonts/proxima-nova/proxima_nova_reg_it.otf") format("opentype");
+    font-style: italic;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: SystemFont;
+    src: url("/content/css/fonts/proxima-nova/proxima_nova_sbold.otf") format("opentype");
+    font-style: normal;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: SystemFont;
+    src: url("/content/css/fonts/proxima-nova/proxima_nova_sbold_it.otf") format("opentype");
+    font-style: italic;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: SystemFont;
+    src: url("/content/css/fonts/proxima-nova/proxima_nova_xbold.otf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: SystemFont;
+    src: url("/content/css/fonts/proxima-nova/proxima_nova_xbold_it.otf") format("opentype");
+    font-weight: 800;
+    font-style: italic;
+}
