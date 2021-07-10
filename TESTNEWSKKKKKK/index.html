@@ -26,6 +26,16 @@ body {
 button.right {
         float: right;
       }
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 </style>
 </div>
 <script>
@@ -38,7 +48,6 @@ function myFunction() {
 <!-- <script language="javascript">if(top !== self){location.href = "about:blank";}</script> -->
 
 </head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Sidebar -->
   <div id="sidebar">
     <header>
@@ -83,6 +92,7 @@ function myFunction() {
     </ul>
   </div>
   <!-- Content -->
+<div class="main">
 <div style="height:10px;"></div>
 <div id="player"><marquee direction="alternative"><b> 欢迎使用天空4K,本软件始终永久免费无需任何费用！ —— WELCOME TO SKY 4K,Please Take Note That Sky 4K Is Always FREE OF CHARGE!</b></marquee>
 
