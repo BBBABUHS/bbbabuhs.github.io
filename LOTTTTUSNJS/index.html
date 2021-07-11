@@ -1,0 +1,290 @@
+<html><head>
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>澳門蓮花衛視</title>
+
+<script src="https://bbbabuhs.github.io/LOTTTTUSNJS//Public/mobile/js/jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript" src="https://bbbabuhs.github.io/LOTTTTUSNJS//Public/mobile/js/tbmtouch.js"></script>
+
+<script type="text/javascript" src="https://bbbabuhs.github.io/LOTTTTUSNJS//Public/user/jquery.SuperSlide.2.1.1.js"></script>
+
+<link href="https://bbbabuhs.github.io/LOTTTTUSNJS//Public/mobile/css/default.css" rel="stylesheet" type="text/css">
+
+<style type="text/css" media="all">
+
+ul { margin:0px; padding:0px; list-style:none; }
+
+/*touch*/
+
+.homeFouce { width:320px; height:152px; overflow:hidden; position:relative; }
+
+.homeList { position:relative; width:320px; height:152px; }
+
+.homeImg { width:1600px; position:absolute; }
+
+.homeImg li { float:left; }
+
+.homeButton { position:absolute; bottom:5px; left:135px; width:60px; overflow:hidden; }
+
+.homeButton li { float: left; margin-right:2px; text-indent:-999px; width: 6px; height: 6px; cursor: pointer; background-color: #666; -moz-border-radius: 100px; -khtml-border-radius: 100px; -webkit-border-radius: 100px; border-radius: 100px; }
+
+.homeButton li.cur { -moz-border-radius: 100px; -khtml-border-radius: 100px; -webkit-border-radius: 100px; border-radius: 100px; background-color: #FC0; height: 6px; width: 6px; }
+
+/* 广告*/
+
+
+
+#survey {  background-repeat: no-repeat; background-position: center top; height: 100%; width: 100%; overflow: hidden; position: absolute; z-index: 1000; background-size:100% 100%; -moz-background-size:100% 100%; /* 老版本的 Firefox */ background-color: #FFF; }
+
+#adlink { width:320px; margin:auto; position: absolute; left: 20px; bottom: 10px; }
+
+#adlink li { display:inline; }
+
+#adlink a { display:block; float:left; margin-left:10px; background-repeat: no-repeat; height: 35px; width: 126px; background-size:126px 150px; }
+
+  
+
+#survey{background-image: url(/Public/user/image/index_adbg.jpg);}
+
+#adlink a {background-image: url(/Public/user/image/index_ad.png); }  
+
+#adlink .cx {background-position: left -50px;}
+
+#adlink .rule { background-position: left -100px; }
+
+#closebtn { font-size: 14px; color: #FFF; background-color: #999; text-align: center; height: 30px; width: 50px; border: 1px solid #FFF; position: absolute; right: 0px; bottom: 10px; line-height: 30px; text-decoration: none; }
+
+#slang{ position:absolute; top: 10px; right:10px; width:100px; height:28px; background-color: #333; line-height: 25px; text-align: center;-moz-border-radius: 15px;      /* Gecko browsers */
+
+    -webkit-border-radius: 15px;   /* Webkit browsers */
+
+    border-radius:15px;        }
+
+#slang a{ font-size: 14px; font-weight: bold; color: #FFF; text-decoration: none; line-height: 28px; display: block; float: left; height: 28px; width: 49px; }
+
+/**/
+
+.weather { font-size: 12px; color: #FF0; }
+
+.weather a { color:#FFF; text-decoration:none; font-size: 12px; }
+
+/* 新闻css */
+
+.txtMarquee-left { width:100%; position:relative; background:#1770d4; margin-top:10px; color: #FFF; font-size: 12px; height: 30px; }
+
+.txtMarquee-left .hd { overflow:hidden; height:30px; background:#f4f4f4; padding:0 10px; }
+
+.txtMarquee-left .bd { padding:5px; }
+
+.txtMarquee-left .bd .tempWrap { width:99% !important; }
+
+.txtMarquee-left .bd ul { overflow:hidden; zoom:1; }
+
+.txtMarquee-left .bd ul li { margin-right:20px; float:left; height:24px; line-height:24px; text-align:left; _display:inline; width:auto !important; overflow: hidden; }
+
+#tipsdiv{ width:300px; position:absolute; z-index:10001; left:50%; top:20px; background-color:#FFF; border:1px #999 solid; font-size: 12px; margin-left: -150px; display: none; }
+
+#tipsdiv ol{ padding-left: 40px; padding-right: 10px; }
+
+#tipsdiv h2{ line-height: 40px; height: 40px; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: #CCC; text-align: center; }
+
+#tipsdiv li{ list-style-position: outside; list-style-type: decimal; margin-top: 10px; line-height: 20px; }
+
+#tipsdiv .closebt{ height: 40px; border-top-width: 1px; border-top-style: dotted; border-top-color: #CCC; padding-top: 10px; }
+
+#tipsdiv .closebt a{ line-height: 25px; color: #FFF; text-decoration: none; background-color: #F90; margin: auto; height: 25px; width: 100px; display: block; text-align: center; border: 1px solid #999; }
+
+
+
+</style>
+
+<script language="javascript" type="text/javascript">
+
+//关闭广告
+
+function closead(){
+
+//document.getElementById('survey').style.display="none";
+
+window.location="/wap.php/Index/index/s/1";
+
+}
+
+
+
+
+</script>
+
+</head>
+
+<body>
+
+<div id="tipsdiv">
+
+	<h2>Prize Rules</h2>
+
+	<ol>
+
+        <li>To win prizes, please scan “Watch Lotus TV &amp; Experience Life in Macau” QR Code, or visit our Website to participate.</li>
+
+        <li>On the 15th of every month, there will be 10 lucky winners of “Participation Prize” by random drawing.  Please check “Watch Lotus TV &amp; Experience Life in Macau” to see if you are the winner. </li>
+
+        <li>On the 15th of every March, June, September and December, there will be 2 lucky winners of “Star Prize” by random drawing for 3 nights stay in a 5-star hotel.</li>
+
+        <li>You can participate as many times as you want.  The more you watch, scan and participate, the more you may win.</li>
+
+        <li>Lotus TV reserves the right of interpretation.</li>
+
+    </ol>
+
+    <div class="closebt"><a href="javascript:void(0)" onclick="return showrule('hide')">close</a></div>
+
+</div>
+
+
+<!-- 广告图 -->
+
+  <div id="survey" style="display:none;">
+
+    <ul id="adlink">
+
+      <li><a href="#" onclick="return showrule('show')" class="rule"></a></li>
+
+      <li><a href="/wap.php/User/prize" class="cx"></a></li>
+
+      <li><a style="margin-top:10px;" href="/wap.php/User/index" class="cy"></a></li>
+
+    </ul>
+
+    <a href="/wap.php/Index/index/s/1" id="closebtn"> &gt; Skip</a> 
+
+    <div id="slang"><a href="?l=zh-cn">中</a><a style="border-left:1px #999 solid; color:#FF0" href="?l=en-us">ENG</a></div>
+
+  </div>
+<!-- home page-->
+
+<div id="page-home">
+
+  <div style="background:#1770d4" class="header">
+
+    <div class="logo"></div>
+
+    <div class="weather" id="weather" style="display:none">
+
+      
+        <a href="/wap.php/User/login">會員登錄</a>
+    </div>
+
+  </div>
+
+  <div class="mainbox">
+
+    <div class="amkj">
+
+      <div class="homeFouce" id="homeFouce">
+
+          <div class="homeList" style="left: 0px;">
+              <ul class="homeImg" style="width: 640px; left: 0px;">
+              <li class="cur" style="left: 0px;"><a href="http://wechat.macaulotustv.com/hdk/event_vaccines.html?from=wechat" target="_blank"><img src="http://www.lotustv.cc/Public/Upload/image/210622/183601_87328.jpg" width="320" height="152"></a></li><li class=""><a href="http://yds2021.macaulotustv.com/index.php?c=index" target="_blank"><img src="http://www.lotustv.cc/Public/Upload/image/210607/105446_68208.jpg" width="320" height="152"></a></li> </ul>
+          </div>
+
+
+
+        <div class="homeButton">
+          <ul><li class="cur">1</li><li>2</li></ul>
+        </div>
+
+      </div>
+
+      <script type="text/javascript">
+
+   $('#homeFouce').slideLayer({ wrapEl: '.homeList', slideEl: '.homeList .homeImg', childEl: '.homeList li', counter: '.homeButton' });
+
+</script>
+
+    </div>
+
+    <div class="nav">
+
+    
+
+       <div class="live-box"><a class="live" target="_blank" href="http://www.lotustv.cc/index.php/index/live.html"><span>直播</span></a></div>
+
+
+
+      <div><a class="about" href="/wap.php/Sub/about"><span>蓮花介紹</span></a></div>
+
+      <div><a class="program" href="/wap.php/Sub/program"><span>節目單</span></a></div>
+
+      <div><a class="column" href="/wap.php/Sub/column/type/1"><span>欄目</span></a></div>
+        <div><a class="exposure" href="/wap.php/Sub/column/type/2"><span>回顧</span></a></div>
+
+      <div class="vidoe-box"><a class="video" href="/wap.php/Sub/video"><span>視頻點播</span></a></div>
+
+      <div><a class="contact" href="/wap.php/Sub/content"><span>聯繫我們</span></a></div>
+
+      <div><a class="ad" href="/wap.php/Sub/ad"><span>廣告諮詢</span></a></div>
+
+    </div>
+
+    <div class="clear_fix"></div>
+
+  </div>
+
+</div>
+
+<div class="txtMarquee-left">
+
+  <div class="bd">
+
+    <ul class="infoList">
+
+    <li></li>
+
+    
+
+     <!-- <li>
+
+   “澳門優等聲第2季”,網絡報名已經截止，沒有通過網絡報名的同學，也可以於5月21日週六到科技大學J座室內體育館現場報名參加海選，海選由21日早上九點開始至傍晚六點結束。。
+
+</li> -->
+
+    </ul>
+
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+jQuery(".txtMarquee-left").slide({mainCell:".bd ul",autoPlay:true,effect:"leftMarquee",vis:2,interTime:50});
+
+function showrule(e){
+
+	var div=document.getElementById('tipsdiv');
+
+	if(e=='show'){
+
+	div.style.display="block";
+
+	}
+
+	if(e=='hide'){
+
+	div.style.display="none";
+
+	}
+
+}
+
+</script>
+
+
+
+<script src="http://s23.cnzz.com/stat.php?id=2649518&amp;web_id=2649518" language="JavaScript"></script>
+
+</body></html>
