@@ -1,0 +1,142 @@
+@charset "utf-8";
+
+
+body {
+	margin: 0px;
+}
+.clear_fix {
+	font-size: 1px;
+	line-height: 1px;
+	clear: both;
+	height: 1px;
+}
+
+.header {
+	height: 50px;
+	width: 100%;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+.weather {
+	float: right;
+	color: #FFF;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+.logo {
+	background-image: url(../images/logo.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	float: left;
+	height: 50px;
+	width: 100px;
+	margin-left: 10px;
+	background-size:81px 45px;
+	
+}
+.amkj {
+	width: 320px;
+	height: 152px;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+}
+.mainbox { max-width:900px; margin: auto; padding-right: 5px; padding-left: 5px; }
+
+.nav div {
+	float: left;
+	height: 80px;
+	width: 30%;
+	margin-top: 5px;
+}
+.nav a  {
+	background-repeat: no-repeat;
+	background-position: center center;
+	display: block;
+	height: 100%;
+	color: #FFF;
+	text-decoration: none;
+	position: relative;
+	margin-left: 5px;
+}
+.nav  span {
+	position: absolute;
+	bottom: 7px;
+	width: 100%;
+	text-align: center;
+}
+
+.nav .live-box {
+	height: 165px;
+	width: 40%;
+}
+.nav   .live{
+	background-color: #F39;
+	background-image: url(../images/nav_bt_play.png);
+	height: 100%;
+	margin-left: 0px;
+}
+.exposure {
+	background-color: #090;
+	background-image: url(../images/nav_bt_msg.png);
+}
+.about {
+	background-color: #0F6FD6;
+	background-image: url(../images/nav_bt_coofice.png);
+}
+.program {
+	background-color: #F60;
+	background-image: url(../images/nav_bt_move.png);
+}
+
+
+.column {
+	background-color: #fc0;
+	background-image: url(../images/nav_bt_tv.png);
+}
+.nav .vidoe-box {
+	width: 40%;
+}
+.nav .video{
+	background-color: #652d90;
+	background-image: url(../images/nav_bt_move.png);
+	margin-left: 0px;
+}
+.contact {
+	background-color: #09C;
+	background-image: url(../images/nav_bt_phone.png);
+}
+.ad {
+	background-color: #597b31;
+	background-image: url(../images/nav_bt_ad.png);
+}
+.news {
+	background-color: #06C;
+	background-image: url(../images/nav_bt_vioce.png);
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	height: 35px;
+	width: 100%;
+	margin-top: 5px;
+	line-height: 35px;
+}
+.news a {
+	font-size: 12px;
+	color: #FFF;
+	text-decoration: none;
+}
+.copyright {
+	line-height: 50px;
+	color: #09C;
+	height: 50px;
+	width: 100%;
+	font-size: 12px;
+	text-align: center;
+}
