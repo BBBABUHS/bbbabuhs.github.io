@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>CodePen - Evangelizing corner-shape #1, powered by Augmented-UI: Prompt</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet' href='https://unpkg.com/augmented-ui@1.1.2/augmented.css'>
+  
+<style>
+html {
+  display: flex;
+  min-height: 100%;
+  min-height: 100vh;
+}
+
+body {
+  background: #000;
+  font-family: Helvetica, Arial, sans-serif;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  color: cyan;
+  --message: "Tick to open";
+  --bg: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 1em;
+}
+.checkbox:checked {
+  --bg: unset;
+  --message: "Untick to close";
+}
+.checkbox:before, .checkbox:after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+}
+.checkbox:before {
+  padding: 0.5em;
+  background: var(--bg, cyan);
+  border: 1px solid;
+}
+.checkbox:after {
+  content: var(--message);
+  color: #fff;
+  margin-left: 0.5em;
+}
+
+.message_container {
+  filter: drop-shadow(0 0 8px cyan);
+}
+.message_container .message {
+  background: #000;
+  --aug-border: 2px;
+  --aug-border-bg: cyan;
+  width: calc(100% - 20px);
+  max-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.message_container .message .title {
+  display: inline-block;
+  padding: 0.5em 2em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  --aug-inset: .25em;
+  --aug-inset-bg: #ff0;
+  --aug-br: .75em;
+}
+.message_container .message p {
+  color: #fff;
+  padding: 1em;
+  margin: 0;
+  display: block;
+  line-height: 1.4em;
+  text-align: justify;
+  max-height: 10em;
+}
+
+.checkbox ~ .message_container > .message {
+  max-height: 0;
+  opacity: 0;
+}
+.checkbox:checked ~ .message_container > .message {
+  max-height: 300px;
+  opacity: 1;
+}
+
+.footer {
+  background: rgba(64, 64, 64, 0.1);
+  backdrop-filter: blur(8px);
+  position: fixed;
+  left: 2.5%;
+  right: 2.5%;
+  bottom: -2px;
+  --aug-border: 2px;
+  --aug-border-bg: cyan;
+  color: #fff;
+  padding: 0.5em;
+  text-align: center;
+}
+.footer ul {
+  display: block;
+}
+.footer ul li {
+  display: inline-block;
+  padding: 0.5em 1em;
+}
+.footer a {
+  color: cyan;
+  text-decoration: none;
+}
+.footer a:hover, .footer a:focus {
+  text-decoration: underline;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <input class="checkbox" type="checkbox" checked="checked" aria-label="Tick the checkbox to open/close the prompt"/>
+<div class="message_container">
+  <div class="message" augmented-ui="exe tl-clip br-clip">
+    <div class="title" augmented-ui="exe tl-clip br-clip">Attention</div>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo, corporis eum, dolorum sed voluptate tempora unde placeat quas ut adipisci illum ab ea commodi sunt. Dolor dolorum neque facere tempora.</p>
+  </div>
+</div>
+<script>
+  var rsw_powered = {};
+  rsw_powered["augmented-ui"] = true;
+</script>
+  
+  <script src='https://rockstarwind.github.io/codepen-footer/main.js'></script>
+  
+  
+
+</body>
+
+</html>
