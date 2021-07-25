@@ -1,0 +1,694 @@
+
+<html>
+  <head>
+ <style>
+		#viewers {
+			float: left;
+			z-index: 3;
+			position: absolute;
+			color: white;
+		}
+		.d-none {
+			display: none;
+		} 
+		.fill {
+			object-fit: fill;
+		}   
+  </style>   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title> Player </title> 
+<script type='text/javascript' src="hls.js/dist/hls.js"></script>
+<script type="text/javascript" src="clappr/dist/clappr.js"></script> 
+<script type="text/javascript" src="clappr-playback-rate-plugin/dist/clappr-playback-rate-plugin.js"></script>
+<script type="text/javascript" src="clappr-rtmp-plugin/dist/rtmp.js"></script>
+<script type="text/javascript" src="clappr-stats/clappr-stats.min.js"></script>
+<!-- <script type="text/javascript" src="Scripts/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="Scripts/socket.io-1.2.0.js"></script>   -->
+
+
+
+
+<script type="text/javascript" charset="utf-8" src="dash-shaka-playback/dash-shaka-playback.js"> </script>
+
+
+<script type="text/javascript" src="clappr-level-selector-plugin/dist/level-selector.js"></script>
+ 
+  </head>
+  <body style="margin:0px;">   
+
+<span id="viewers"></span> 
+  
+		<div id="player-wrapper"></div>
+				 <html>
+
+<head>
+
+</head>
+<!-- include js -->
+<script type="text/javascript" src="Scripts/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="Scripts/socket.io-1.2.0.js"></script>  
+<script> 
+    var connectUrl; 
+    var getPINandViewChannel;
+    var paymentPage;
+    var warningPage;
+    var loginWarning;
+    var successReturnPage; 
+    var purcahseURL;
+    var playerlink;   
+    var chnlname = location.search;
+    chnlname = chnlname.split('=');
+    chnlname = chnlname[1];
+    var accessUrl = window.location.pathname;
+    accessUrl = accessUrl.split('/');
+    accessUrl = accessUrl[1]; 
+    var socket; 
+    if (window.location.port != "") {
+       /*  if (window.location.protocol == "http:") {
+            connectUrl = window.location.protocol + "//" + window.location.hostname + ":3000/getPayPerViewStatus";
+            purcahseURL = window.location.protocol + "//" + window.location.hostname + ":3000/purchase";
+            getPINandViewChannel = window.location.protocol + "//" + window.location.hostname + ":3000/payAndViewChannel";
+            paymentPage = window.location.protocol + "//" + window.location.hostname + ":3000/payPerView/?chnl=" + chnlname;
+            warningPage = window.location.protocol + "//" + window.location.hostname + ":3000/payPerView/?chnl=";
+            loginWarning =  window.location.protocol + "//" + window.location.hostname + ":3000/warning/?chnl=" + chnlname;
+        }  
+        else { */
+            connectUrl = "https://"  + window.location.hostname + ":3210/getPayPerViewStatus";
+            purcahseURL = "https://"  + window.location.hostname + ":3210/purchase";
+            getPINandViewChannel = "https://"  + window.location.hostname + ":3210/payAndViewChannel";
+            paymentPage = "https://"  + window.location.hostname + ":3210/payPerView/?chnl=" + chnlname;
+            warningPage = "https://"  + window.location.hostname + ":3210/payPerView/?chnl=";
+            loginWarning =  "https://"  + window.location.hostname + ":3210/warning/?chnl=" + chnlname;
+            successReturnPage = "https://"  + window.location.hostname + ":3210/?chnl=";
+            playerlink = "https://"  + window.location.hostname + ":3210/?chnl="
+        /* }  */  
+            socket = io({ transports: ['websocket'], query: 'clienttype=player&channelname=' + chnlname + '&type=clappr', port: window.location.port });
+    } else {
+        connectUrl = "https://" + window.location.hostname + '/' + accessUrl + "/player/getPayPerViewStatus";
+        purcahseURL = "https://" + window.location.hostname + '/' + accessUrl + "/player/purchase";
+        getPINandViewChannel = "https://" + window.location.hostname + '/' + accessUrl + "/player/payAndViewChannel";
+        paymentPage = "https://" + window.location.hostname + '/' + accessUrl + "/player/payPerView/?chnl=" + chnlname;
+        warningPage = "https://" + window.location.hostname + '/' + accessUrl + "/player/payPerView/?chnl=";
+        loginWarning =  "https://" + window.location.hostname + '/' + accessUrl + "/player/warning/?chnl=" + chnlname;
+        successReturnPage = "https://"  + window.location.hostname + '/' + accessUrl + "/player/payPerView/?chnl=";
+        playerlink = "https://"  + window.location.hostname + '/' + accessUrl + "/player/?chnl=";
+        socket = io.connect(window.location.hostname, {
+            transports: ['websocket'],
+            query: 'clienttype=player&channelname=' + chnlname + '&type=clappr',
+            'path': '/' + accessUrl + '/player/' + "socket.io"
+        });     
+    }    
+    
+    //getCookie
+    function getCookie(cname, cb) {
+        var name = 'Player_' + cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        var chkarr = [];
+        var namelength = '';
+        var clength = '';
+        var sentResult = false;
+        //var result = localStorage.getItem(cname);       
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            chkarr.push(i);
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            } 
+            if (c.indexOf(name) == 0) {
+                namelength = name.length;
+                clength = c.length;
+                sentResult = true;
+                cb(c.substring(namelength, clength));
+            }
+            if (ca.length == chkarr.length && sentResult == false) {
+                cb("");
+            }
+        }
+    } 
+
+    function checkCookie(chnlname, cb) {
+        getCookie(chnlname, function (result) {
+            if (result == "") {
+                cb("");
+            }
+            else {
+                cb(result);
+            }
+        });
+    } 
+
+    function setCookie(channel, securePin, cookiesExpTime,cb) {
+            try {                                                      
+                var expires = "expires=" + cookiesExpTime;  
+                var cookieValue = channel + '_' + securePin;                
+                document.cookie = channel + "=" + securePin + ";" + expires + ";path=/";    
+                cb('stored');             
+            } 
+            catch (err) {
+                console.log(err);
+            }
+    }  
+
+    function deleteStoredInfo(name) {
+        try{
+            document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+        catch(err){
+            console.log(err); 
+        } 			  
+    }  
+
+    function storedInfo(channel,exists,securePin,cb){
+                try{    
+                    if(exists == ""){
+                        var data = { 'Channel' : channel,'securePin' : securePin };
+                        socket.emit('GetChannelPINdetails',data,function(result){
+                            if(result.Channel != undefined && result.securePin != undefined && result.StoredTime != undefined && result.StoredTime != "IncorrectPIN" && result.StoredTime != "NoPaymentFound"){
+                                setCookie('Player_' + result.Channel, result.securePin, result.StoredTime,function(storedData){
+                                    cb(result); 
+                                });
+                            }else{
+                                cb(result); 
+                            }                                                         
+                        });                    
+                    }else{
+                        cb('Done');
+                    }                                         
+                }   
+                catch(err){
+                    console.log(err); 
+                }
+    }  
+            
+    /* socket.on('connect', function (status) {
+         
+    });
+    
+    socket.on("disconnect", function(){
+       
+    });  */  
+
+    socket.on('reconnect', function(){
+        try{            
+            checkCookie(chnlname,function(resultStatus){
+                if(resultStatus != "" && chnlname != "" && resultStatus != undefined && chnlname != undefined){
+                    var data = {};
+                    data.from = 'onload';
+                    data.type = 'Channel';
+                    data.chnlname = chnlname;
+                    data.pinNumber = resultStatus;
+                    socket.emit('ReconnectRoom', data);          
+                }
+            });  
+         }
+         catch(err)   {
+
+         }
+    });     
+
+</script>
+
+</html> 
+
+				 
+<script>
+var P_TYPE = 'clappr';
+var P_TITLE = 'Player';
+var P_HEIGHT = '100%';
+var P_WIDTH = '100%';
+var P_MIME = '';
+var P_SOURCES = '""';
+var P_URL = 'https://dreamtv.livebox.co.in/bflixouthls/live.m3u8';
+var P_AUTOPLAY = false;
+var P_WATERMARK = "";
+var P_POSITION = "no";
+var P_SEEKBAR = "F30000";
+var P_P2PPID = null;
+var P_PEER5ID = null;
+var P_BUTTONS = "FF0000";
+var P_AUTORECONNECT = false;
+var P_AUTORECONNECTVAL = 5;
+var P_POSTER = 'false';
+var P_CONTROLS = true;
+var P_AUTOHIDECONTROLS = true;
+var P_PRELOAD = false;
+var P_REPEAT = false;
+var P_MUTE = true;
+var P_STRETCH = false;
+var P_ASPECTRATIO = 16/9;
+var P_DvrMode = false;
+</script>
+ 
+				 				 
+    <script type="text/javascript"> 
+	// For secure hls & issue
+		var parser = new DOMParser;
+		var dom = parser.parseFromString(
+			'<!doctype html><body>' + P_URL, 'text/html');
+		var P_URL = dom.body.textContent;
+	var player = '';    
+    function createplayer()
+    {    	
+	var playerElement = document.getElementById("player-wrapper");	
+    		player = new Clappr.Player({
+			source: P_URL,
+			poster: P_POSTER, 
+			hideMediaControl: P_AUTOHIDECONTROLS,
+			autoplay: P_AUTOPLAY,
+			autoreconnect: P_AUTORECONNECT,
+			autoreconnectVal: P_AUTORECONNECTVAL,
+			mute: P_MUTE,
+			height: P_HEIGHT,
+			watermark: P_WATERMARK,
+			position: P_POSITION,
+			width: P_WIDTH,
+			persistConfig: false,
+			allowUserInteraction: true,
+			aspectRatio: P_ASPECTRATIO,
+			mediacontrol: { seekbar: '#' + P_SEEKBAR, buttons: '#' + P_BUTTONS },
+			disableVideoTagContextMenu: true,
+			clicktopause: true,
+			
+    		plugins: {
+    			'playback': [RTMP],
+				 'playback': [DashShakaPlayback], 
+				 'core': [LevelSelector], 
+			
+				
+
+				  
+	
+                'clappr': [ClapprStats]
+	    	},                   
+    		rtmpConfig:
+ {
+    			swfPath: '/clappr-rtmp-plugin/dist/assets/RTMP.swf',
+    			scaling:'stretch',
+    			playbackType: 'live',
+    			bufferTime: 1,
+    			startLevel: 0,
+			switchRules: {
+    			"SufficientBandwidthRule": {
+    				"bandwidthSafetyMultiple": 1.15,
+					"minDroppedFps": 2
+    			},
+				"InsufficientBufferRule": {
+					"minBufferLength": 2
+				},
+				"DroppedFramesRule": {
+					"downSwitchByOne": 10,
+					"downSwitchByTwo": 20,
+					"downSwitchToZero": 24
+				},
+				"InsufficientBandwidthRule": {
+					"bitrateMultiplier": 1.15
+				}
+    	}
+    },	  
+                    levelSelectorConfig: {
+                  		title: 'Quality',
+                  		labels: {
+                  			
+							  0 : '', 
+							  
+                               
+							   
+							  1 : '', 
+							  
+                               
+							   
+							  2 : '', 
+							  
+                               
+							   
+							  3 : '', 
+							  
+                               
+							   
+							  4 : '', 
+							  
+                               
+							   
+							  5 : '', 
+							  
+                               
+							   
+							  6 : '', 
+							  
+                               
+							   
+							  7 : '', 
+							  
+                               
+							   
+							  8 : '', 
+							  
+                               
+							   
+							  9 : '', 
+							  
+                               
+							   
+							  10 : '', 
+							  
+                               
+							   
+							  11 : '', 
+							  
+                               
+							   
+							  12 : '', 
+							  
+                               
+							   
+							  13 : '', 
+							  
+                               
+							   
+							  14 : '', 
+							  
+                               
+							   
+							  15 : '', 
+							  
+                               
+							   
+							  16 : '', 
+							  
+                               
+							   
+							  17 : '', 
+							  
+                               
+							   
+							  18 : '', 
+							  
+                               
+							   
+							  19 : '', 
+							  
+                               
+							   
+							  20 : '', 
+							  
+                               
+							   
+							  21 : '', 
+							  
+                               
+							   
+							  22 : '', 
+							  
+                               
+							   
+							  23 : '', 
+							  
+                               
+							   
+							  24 : '', 
+							  
+                               
+							   
+							  25 : '', 
+							  
+                               
+							   
+							  26 : '', 
+							  
+                               
+							   
+							  27 : '', 
+							  
+                               
+							   
+							  28 : '', 
+							  
+                               
+							   
+							  29 : '', 
+							  
+                               
+							   
+							  30 : '', 
+							  
+                               
+							   
+							  31 : '', 
+							  
+                               
+							   
+							  32 : '', 
+							  
+                               
+							   
+							  33 : '', 
+							  
+                               
+							   
+							  34 : '', 
+							  
+                               
+							   
+							  35 : '', 
+							  
+                               
+							   
+							  36 : '', 
+							  
+                               
+							   
+							  37 : '', 
+							  
+                               
+							   
+							  38 : '', 
+							  
+                               
+							   
+							  39 : '', 
+							  
+                               
+							   
+							  40 : '', 
+							  
+                               
+							   
+							  41 : '', 
+							  
+                               
+							   
+                    
+							   }
+                  },
+                  	labelCallback: function(playbackLevel, customLabel) {
+                  		return customLabel + playbackLevel.level.height+'p'; // High 720p
+                  	},  clapprStats: {
+                  	runEach: 5000, //optional: time in miliseconds for each report default:  5000
+                  	// onReport: (metrics) => { console.log(metrics) }, //optional: callback function default: console.log
+                  	uriToMeasureLatency: 'https://www.google.com/favicon.ico', //optional: provide an img uri hosted at
+                  		// the same place as your farm or near of it prefferable 1x1px, without caching. default: none
+                  	}
+                 		
+    });
+	  player.attachTo(playerElement);
+		player.setVolume(80);	
+
+
+					
+		function autoReconnect(P_AUTORECONNECTVAL){
+			var bufTime = 0;
+			var z = P_AUTORECONNECTVAL;
+			var timerId = setInterval(function () {
+				if (player.buffering && player.isPlaying()) {
+					bufTime += 1;
+				} 
+				else if (!player.buffering) {
+					bufTime = 0;
+				}
+				
+				if (bufTime >= z) {					
+					bufTime = 0;
+					player.stop();
+					player.play();
+				}
+			}, 1000);
+		}
+		if (P_POSITION == "no") {  			
+			$("data-watermark").remove();
+		}	
+
+		// $(".play-wrapper").remove();  				
+                if(P_AUTOPLAY==true) {
+					  setTimeout(function(){ 														
+							 $( ".play-wrapper" ).trigger( "click" );
+                                        player.play();
+					  }, 2000);	 
+				}
+				if(P_AUTORECONNECT==true) {
+					autoReconnect(P_AUTORECONNECTVAL);					
+				}
+				if(P_STRETCH==true) {
+					$("video").addClass('fill');				
+				}
+	  
+	  }
+	  var IsLoadPlayer = true; 	  
+
+	  $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e)
+	  {
+	     resizePlayer();
+	  });
+	function resizePlayer(){
+        newWidth = window.innerWidth;
+        newHeight = window.innerHeight;
+		if(player != null){
+			player.resize({width: newWidth, height: newHeight});
+		}
+    }
+    window.onresize = resizePlayer; 
+
+
+	  function LoadRestrictImage(){
+			IsLoadPlayer = false;
+		  var innerDiv = document.createElement('img');
+		innerDiv.src = 'Scripts/denied.jpg';
+
+		  document.getElementById("player-wrapper").appendChild(innerDiv);
+	  }
+	  
+
+   
+		if(window.location.ancestorOrigins != undefined){
+			var client_domain =window.location.ancestorOrigins[0];		 
+			
+		}
+		var a = []
+		 0
+
+	if(client_domain != undefined){  
+	 client_domain = client_domain.replace(/^https?\:\/\//i, "");
+                                    
+
+		
+	
+				
+				}
+				if(IsLoadPlayer){
+					// Ip restrictions
+					
+					//Domain restrictions
+					//console.log('restrictByDomain ');
+					 
+				} 
+	if(IsLoadPlayer){
+		createplayer(); 
+	}
+	
+	var chanlname = "bflixout"
+	
+
+			function getPayPerViewstatus() {
+				var data = {};
+				data.from = 'onload';
+				data.type = 'Channel';
+				data.chnlname = chnlname;
+				checkCookie(chnlname, function (sessionData) {
+					data.pinNumber = sessionData;
+					socket.emit('Createroom', data, function (channelResult) {
+						/* if(window.location.protocol != 'https:') {
+  							location.href =  location.href.replace("http://", "https://");
+						} */ 
+						if (channelResult.status == 'on') {
+							window.location.href = paymentPage;
+						}
+						else if (channelResult.status == 'Enabled') {							
+							player.configure({
+								source: channelResult.data
+							});
+							player.mute = true;
+							player.play();
+						}  
+						else if(channelResult.status == 'restrict'){
+							window.location.href = loginWarning + '&type=Alreadylogin'; 
+						} 
+						else if (channelResult.status != undefined && channelResult.status == 'StartModeEnabled') {
+							window.location.href = loginWarning + '&type=countdown_' + channelResult.timer; 
+					    }
+						else if (channelResult.status == 'error') {
+							window.location.href = loginWarning + '&type=somethingwentwrong'; 
+					    }
+						else {
+							player.mute = true;
+							player.play();
+						}
+					});					
+				});
+			}   
+			
+			socket.on('channelPlayerInfo', function (result) {		
+				try{
+					if (result.channelName != undefined && result.channelName == chnlname) {										
+						if(result.status != undefined && result.status == "Expired" && result.SecuredPIN != ""){	
+							checkCookie(chnlname, function (sessionData) {
+								if(sessionData != undefined && sessionData != "" && sessionData == result.SecuredPIN){
+									window.location.href = loginWarning + '&type=Expired'; 
+								}
+							}); 	 			 							
+						} 
+					}
+				}
+				catch(err){
+
+				}				
+			});    				
+			 
+		// Player click events
+		
+		$('.play-wrapper').click(function (e) {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			getPayPerViewstatus(); 
+		});  
+
+		$(document).on('click', '#player-wrapper', function (e) {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			getPayPerViewstatus();
+		}); 
+
+		$(document).on('click', '.player-error-screen__reload', function (e) {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			getPayPerViewstatus();
+		});
+
+		$('.player-poster').click(function(e) {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			getPayPerViewstatus();
+		}); 
+
+		$(document).on('click', '.paused', function (e) {
+			//alert('stopped');
+		});	 	  
+
+		//localStorage.setItem("1", "");
+		//localStorage.setItem("", "");
+		//localStorage.removeItem(""); 		 	 		
+		
+		/* setTimeout(function(){
+			player.configure({
+				source : '',
+				url: ''
+			}); 
+			player.mute = true;			
+			player.play(); 
+		},5000); */ 		
+
+		
+	
+	              </script>
+  </body>
+</html> 
